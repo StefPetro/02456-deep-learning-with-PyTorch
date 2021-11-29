@@ -3,6 +3,9 @@
 project/4000_PCS_human_origins
 project/v44.3_HO_public.anno
 project/lightning_logs
+02456DeepLearning_project
+checkpoints
+wandb
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
