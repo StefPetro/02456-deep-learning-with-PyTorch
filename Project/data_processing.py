@@ -26,6 +26,7 @@ def prepare_data(pcs: pd.DataFrame, meta: pd.DataFrame,
     """
     
     if not ancient_samples:
+        print('Removing ancient samples...')
         meta = meta[meta[date_col] == 'present']
     
     filter_meta = meta[['Version ID', 'Country']]

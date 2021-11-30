@@ -1,0 +1,6 @@
+batch_size: 59
+layer_1: 1670
+layer_2: 1980
+layer_3: 267
+layer_4: 1694
+dropout: 0.2469524816724903
