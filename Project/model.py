@@ -36,7 +36,7 @@ class ffnn(pl.LightningModule):
 
         self.fc_out = nn.Linear(
             in_features=layer_4,
-            out_features=12  # Number of regions (in the dataset = 12, originally 14)  # 143 countries
+            out_features=11  # Number of regions (in the dataset = 12, originally 14)  # 143 countries
         )
 
         self.dropout = nn.Dropout(dropout)

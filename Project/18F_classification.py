@@ -44,7 +44,7 @@ layer_4    = hyperparameters['layer_4']
 dropout    = round(hyperparameters['dropout'], 5)
 
 x, y, idx_to_country = prepare_data(pcs, meta, num_of_pcs=INPUT_SIZE, ancient_samples=True)
-train_loader, val_loader = create_dataloaders(x, y, batch_size=batch_size, train_shuffle=True)
+train_loader, val_loader, test_loader = create_dataloaders(x, y, batch_size=batch_size, train_shuffle=True)
 
 gpu = 1 if torch.cuda.is_available() else 0
 

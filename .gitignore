@@ -6,6 +6,7 @@ project/lightning_logs
 02456DeepLearning_project
 checkpoints
 wandb
+.vscode/settings.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -45,6 +45,7 @@ def prepare_data(pcs: pd.DataFrame, meta: pd.DataFrame,
     
     elif target.lower() == 'region':
         merged['Region'] = merged['Country'].map(country_region)
+        merged = merged.dropna()
         regions = merged['Region'].unique()
         idx_to_target = dict(zip(regions, np.arange(len(regions))))
         merged['Region'] = merged.apply(lambda row: idx_to_target[row['Region']], axis=1)
@@ -80,17 +81,20 @@ def create_dataloaders(x:torch.Tensor, y:torch.Tensor, batch_size:int=64, train_
     dataset = TensorDataset(x, y)
 
     # Then using random_split a test and val set is created
-    train_size = int(0.8*len(dataset))
-    test_size = len(dataset) - train_size
-    train_set, val_set = random_split(dataset, [train_size, test_size])
+    train_size = int(0.7*len(dataset))
+    val_size  = int(0.2*len(dataset))
+    test_size = len(dataset) - train_size - val_size
+    train_set, val_set, test_set = random_split(dataset, [train_size, val_size, test_size])
 
     # Then the dataloaders can initialized
     train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=train_shuffle)
     val_loader = DataLoader(val_set, batch_size=batch_size, shuffle=False)
+    # test dataset is small enough to get whole dataset in one batch
+    test_loader = DataLoader(test_set, batch_size=len(test_set), shuffle=False) 
 
     if save:
         torch.save(train_loader, 'processed_data/train_loader.pth')
         torch.save(val_loader, 'processed_data/val_loader.pth')
 
-    return train_loader, val_loader
+    return train_loader, val_loader, test_loader
 
