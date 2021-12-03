@@ -40,7 +40,8 @@ axes[1].set_ylabel('Loss', size=18)
 axes[0].set_title('Accuracy for model with ancient samples', size=20)
 axes[1].set_title('Loss for model with ancient samples', size=20)
 
-axes[0].set_ylim(0.52, 0.9)
+axes[0].set_ylim(0.52, 1)
+axes[1].set_ylim(0, 1.4)
 
 axes[0].legend()
 axes[1].legend()
@@ -69,6 +70,9 @@ axes[1].set_ylabel('Loss', size=18)
 
 axes[0].set_title('Accuracy for model without ancient samples', size=20)
 axes[1].set_title('Loss for model without ancient samples', size=20)
+
+axes[0].set_ylim(0.52, 1)
+axes[1].set_ylim(0, 1.4)
 
 axes[0].legend()
 axes[1].legend()

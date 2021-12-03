@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 from typing import Union, Tuple
+from pandas.core.reshape.merge import merge
 import torch
 from torch.utils.data import TensorDataset, DataLoader, random_split 
 
@@ -48,7 +49,8 @@ def prepare_data(pcs: pd.DataFrame, meta: pd.DataFrame,
         merged = merged.dropna()
         regions = merged['Region'].unique()
         idx_to_target = dict(zip(regions, np.arange(len(regions))))
-        merged['Region'] = merged.apply(lambda row: idx_to_target[row['Region']], axis=1)
+        #merged['Region'] = merged.apply(lambda row: idx_to_target[row['Region']], axis=1)
+        merged['Region'] = merged['Region'].map(idx_to_target)
         # y = torch.from_numpy(one_hot_countries.values)
         y = torch.from_numpy(merged['Region'].values)
         
